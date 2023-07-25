@@ -1,0 +1,61 @@
+\begin{tikzpicture}[
+            remember picture,
+            overlay,
+    ]
+        \node[squarenode](P1)[background default draw=black, draw=accent, draw on=<3>, yshift=1cm]{P1};
+        \node[squarenode](P2)[right=of P1, background default draw=black, draw=accent, draw on=<3>]{P2};
+        \node[squarenode](P3)[right=of P2, background default draw=black, draw=accent, draw on=<3>]{P3};
+        \node[squarenode](P4)[right=of P3, background default draw=black, draw=accent, draw on=<3>]{P4};
+        \node[squarenode](P5)[right=of P4, background default draw=black, draw=accent, draw on=<3>]{P5};
+        \node[draw=none](etc)[right=of P5]{...};
+        \node[squarenode, draw=accent!70, background default draw=black, draw on=<{2,6,7}>, fit=(P1) (P2) (P3) (P4) (P5) (etc)] {};
+        \node[draw=none] at (6.2, 1.5) {\fontspec{Symbola}\symbol{"1F512}};
+
+        \node[squarenode](N1)[below=of P2, background default draw=black, draw=accent, draw on=<4>, visible on=<{4-7}>]{N1};
+        \node[squarenode](N2)[right=of N1, background default draw=black, draw=accent, draw on=<4>, visible on=<{4-7}>]{N2};
+        \node[squarenode](N3)[right=of N2, background default draw=black, draw=accent, draw on=<4>, visible on=<{4-7}>]{N3};
+
+        \node[squarenode](P1p)[below=1.5cm of P1, visible on=<{7-9}>]{P1'};
+        \node[squarenode](P2p)[right=of P1p, visible on=<{7-9}>]{P2'};
+        \node[squarenode](P3p)[right=of P2p, visible on=<{7-9}>]{P3'};
+        \node[squarenode](P4p)[right=of P3p, visible on=<{7-9}>]{P4'};
+        \node[squarenode](P5p)[right=of P4p, visible on=<{7-9}>]{P5'};
+        \node[draw=none, visible on=<{7-9}>](etcp)[right=of P5p]{...};
+        \node[squarenode, draw=green, background default draw=black, visible on=<{7-9}>, draw on=<7>, fit=(P1p) (P2p) (P3p) (P4p) (P5p) (etcp)] {};
+        \node[draw=none, visible on=<{7-9}>] at (6.55, -0.55) {\fontspec{Symbola}\symbol{"1F512}};
+
+        \node[squarenode](S)[below=of N2, background default draw=black, draw=blue, draw on=<6>, visible on=<6>]{S};
+
+        \draw[arrow, visible on=<{4-7}>] (P1) -- (N1);
+        \draw[arrow, visible on=<{4-7}>] (P2) -- (N2);
+        \draw[arrow, visible on=<{4-7}>] (P3) -- (N1);
+        \draw[arrow, visible on=<{4-7}>] (P4) -- (N2);
+        \draw[arrow, visible on=<{4-7}>] (P5) -- (N3);
+
+        \draw[arrow, visible on=<7>] (N1) -- (P1p);
+        \draw[arrow, visible on=<7>] (N2) -- (P2p);
+        \draw[arrow, visible on=<7>] (N1) -- (P3p);
+        \draw[arrow, visible on=<7>] (N2) -- (P4p);
+        \draw[arrow, visible on=<7>] (N3) -- (P5p);
+
+        \draw[arrow, visible on=<6>] (N1) -- (S);
+        \draw[arrow, visible on=<6>] (N2) -- (S);
+        \draw[arrow, visible on=<6>] (N3) -- (S);
+
+        \draw[arrow, dashed, visible on=<8>] (P1) to [bend left=50] (P1p);
+        \draw[arrow, dashed, visible on=<8>] (P2) to [bend left=20] (P2p);
+        \draw[arrow, dashed, visible on=<8>] (P3) to [bend left=0] (P3p);
+        \draw[arrow, dashed, visible on=<8>] (P4) to [bend right=20] (P4p);
+        \draw[arrow, dashed, visible on=<8>] (P5) to [bend right=50] (P5p);
+
+        \draw[arrow, dashed, visible on=<9>] (P1) to [bend left=50] (P1p);
+        \draw[arrow, dashed, visible on=<9>] (P1) to (P3p);
+        \draw[arrow, dashed, visible on=<9>] (P1) to (P4p);
+        \draw[arrow, dashed, visible on=<9>] (P2) to [bend left=20] (P1p);
+        \draw[arrow, dashed, visible on=<9>] (P2) to (P5p);
+        \draw[arrow, dashed, visible on=<9>] (P3) to (P2p);
+        \draw[arrow, dashed, visible on=<9>] (P4) to (P4p);
+        \draw[arrow, dashed, visible on=<9>] (P4) to (P3p);
+        \draw[arrow, dashed, visible on=<9>] (P5) to [bend right=50] (P5p);
+        \draw[arrow, dashed, visible on=<9>] (P5) to [bend right=30] (P4p);
+\end{tikzpicture}

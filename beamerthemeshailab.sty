@@ -1,4 +1,4 @@
-\ProvidesPackage{awesome-beamer-theme}[]
+\ProvidesPackage{shailab-beamer-theme}[]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,7 +14,7 @@
 	\awesome@english@true
 }
 
-\DeclareVoidOption{german}{
+\DeclareVoidOption{chinese}{
 	\awesome@english@false
 }
 
@@ -29,7 +29,8 @@
 \ifawesome@english@
 	\RequirePackage[english]{babel}
 \else
-	\RequirePackage[ngerman]{babel}
+        \RequirePackage[english]{babel}
+	\RequirePackage{ctex}
 \fi
 
 
@@ -380,7 +381,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 
 \tikzfading[
 	name=title page picture fading,
-	left color=transparent!0,
+	left color=transparent!40,
 	right color=transparent!100,
 ]
 
@@ -392,34 +393,34 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 \setbeamertemplate{title page}{%
 	\thispagestyle{navigation@titlepage}
 	\begin{minipage}{.8\textwidth}
-		\raggedright
-		\usebeamerfont{title}
-		\usebeamercolor[fg]{title}
-		\parbox{.75\textwidth}{\inserttitle}\\
-		\usebeamerfont{subtitle}
-		\usebeamercolor[fg]{subtitle}
-		\insertsubtitle
-
-		\usebeamertemplate{separator}
-
-		\usebeamerfont{author}
-		\usebeamercolor[fg]{author}
-		\vspace{2em}
-		\insertauthor\\
-		\usebeamerfont{details}
-		\usebeamercolor[fg]{details}
-		\insertemail
-
-		\vspace{2em}
-		\usebeamerfont{details}
-		\usebeamercolor[fg]{details}
-		\insertinstitute\\
-		\insertuni
-
-		\vspace{2em}
-		\insertdate
+			\raggedright
+			\usebeamerfont{title}
+			\usebeamercolor[fg]{title}
+			\parbox{.75\textwidth}{\inserttitle}\\
+			\usebeamerfont{subtitle}
+			\usebeamercolor[fg]{subtitle}
+			\insertsubtitle
+			
+			\usebeamertemplate{separator}
+			
+			\usebeamerfont{author}
+			\usebeamercolor[fg]{author}
+			\vspace{2em}
+			\insertauthor\\
+			\usebeamerfont{details}
+			\usebeamercolor[fg]{details}
+			\insertemail
+			
+			\vspace{2em}
+			\usebeamerfont{details}
+			\usebeamercolor[fg]{details}
+			\insertinstitute\\
+			\insertuni
+			
+			\vspace{2em}
+			\insertdate
 	\end{minipage}
-
+	
 	\ifdefined\@background
 		\begin{tikzpicture}[remember picture, overlay]
 			\clip (current page.south east)
@@ -427,7 +428,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 				-- ++(-5.1, 0)
 				-- ++(-3, -\paperheight)
 				-- cycle;
-
+			
 			\node[
 				anchor=south east,
 				inner sep=0,
@@ -435,7 +436,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 			] at (current page.south east) {
 				\includegraphics[height=\paperheight]{\@background}
 			};
-
+			
 			\fill[
 				black, path fading=title page picture fading,
 				fading angle=-15
@@ -446,6 +447,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 		\end{tikzpicture}
 	\fi
 }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -496,7 +498,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 				\ifawesome@english@
 					Page
 				\else
-					Seite
+					\ 
 				\fi
 				~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}
 			}%
@@ -623,15 +625,36 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 	\fi
 }
 
+
 \AtEndDocument{
 	{\setbeamercolor{background canvas}{bg=accent!70!black}
 	\begin{frame}[b, noframenumbering]
 		\color{white}
 		\thispagestyle{navigation@titlepage}
-		\Large\textbf{\insertauthor}
-		\vskip0.5em
-		\scriptsize\insertlocation,~\insertdate
-		\hfill
-		\insertemail
+            
+        \begin{columns}
+            \begin{column}{\textwidth}
+                \ifawesome@english@
+                	\Huge A Few words...
+                        \newline
+                        \newline
+                        \small Thanks for Listening!
+                \else
+                        \Huge 结束语
+                        \newline
+                        \newline
+                        \small 感谢聆听！恳请各位专家老师批评指正
+                \fi
+                
+                \vskip3em
+                
+                \Large\textbf{\insertauthor}
+                \vskip0.5em
+                \scriptsize\insertlocation,~\insertdate
+                \hfill
+                \insertemail
+            \end{column}
+        \end{columns}
+        
 	\end{frame}}
 }
